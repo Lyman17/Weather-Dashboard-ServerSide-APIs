@@ -6,3 +6,4 @@ function search(){
     fetchWeatherAPI(searchInput);
     $("#search-input").val("");
 }
+
