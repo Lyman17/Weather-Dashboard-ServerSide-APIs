@@ -169,3 +169,110 @@ function buildForecast(city){
     }
     
 }
+//there was likely a way to do this in the loop to avoid repetition
+    //but due to lack of time, doing a quick fix
+    var lastForecast = {
+        date: curDate,
+        highTemp: temp_high,
+        lowTemp: temp_low,
+        windSpeed: (avg_windSpeed / dataPts).toFixed(2), //find the mean wind speed to 2 decimal places
+        humidity: (avg_humidity / dataPts).toFixed(0), //finds the mean humidity
+    }
+    forecasts.push(lastForecast);
+
+    return forecasts;
+
+    
+
+}
+
+//returns id using name of icon
+function mostIcon(iconList){
+    const iconID ={
+        "clearSky": "01",
+        "fewClouds": "02",
+        "scatteredClouds": "03",
+        "brokenClouds": "04",
+        "showerRain": "09",
+        "rain": "10",
+        "thunderstorm": "11",
+        "snow": "13",
+        "mist": "50",
+    }
+    var mostName = "";
+    var mostNum = -1;
+    
+    for (icon in iconList) {
+        if(iconList[icon] > mostNum){
+            mostNum = iconList[icon];
+            mostName = icon;
+        }
+    }
+    
+    switch(mostName){
+        case "clearSky": return iconID.clearSky;
+        case "fewClouds": return iconID.fewClouds;
+        case "scatteredClouds": return iconID.scatteredClouds;
+        case "brokenClouds": return iconID.brokenClouds;
+        case "showerRain": return iconID.showerRain;
+        case "rain": return iconID.rain;
+        case "thunderstorm": return iconID.thunderstorm;
+        case "snow": return iconID.snow;
+        case "mist": return iconID.mist;
+        default: console.log("ERROR");return iconID.clearSky;
+    }
+}
+
+//Displays the relevant information using today's date
+function displayToday(city){
+    var dateTest = dayjs.unix(city.dt).format("MM/DD/YY");
+    $("#today-city-name").text(city.name + " ("+ dateTest +") ");
+    $("#icon").attr("src","https://openweathermap.org/img/w/" + city.weather[0].icon + ".png")
+    $("#today-city-temp").text("Temperature: " + city.main.temp + "\u00B0F");
+    $("#today-city-wind").text("Wind: " + city.wind.speed + " MPH");
+    $("#today-city-humidity").text("Humidity: " + city.main.humidity + "%");
+}
+
+//adds a button for a city to the list. creates an item in local storage containing city name
+function addToList(city){
+    var key = "HDF-weatherApp-" + city;
+    localStorage.setItem(key, city);
+    $("#city-list").append("<button type=\"button\" class=\"saved-city\">" + city + "</button>");
+
+}
+
+//cycles through local storage and displays the buttons of previously searched cities on load time
+function displayList(){
+    Object.keys(localStorage).forEach((key) => {
+        if(key.includes("HDF-weatherApp-")){
+            var name = localStorage.getItem(key);
+            $("#city-list").append("<button type=\"button\" class=\"saved-city\">" + name + "</button>");
+        }
+    });
+}
+
+//displays 5 day forecast
+function display_5day(city){
+    var forecastList = buildForecast(city);
+    console.log(forecastList);
+    $(".forecast-day-container").show();
+
+    var i = 0;
+    $(".forecast-day-container").each(function(){
+        $(this).children(".current-forecast-date").text(forecastList[i].date);
+        $(this).children("img").attr("src","https://openweathermap.org/img/w/" + forecastList[i].icon + ".png");
+        $(this).children(".high").text("High: " + forecastList[i].highTemp + "\u00B0F");
+        $(this).children(".low").text("Low: " + forecastList[i].lowTemp + "\u00B0F");
+        $(this).children(".wind").text("Avg Wind: " + forecastList[i].windSpeed + " MPH");
+        $(this).children(".humidity").text("Avg Humidity: " + forecastList[i].humidity + "%");
+        i++;
+    })
+}
+
+//BUTTONS
+$("#search-btn").click(search);
+$("#city-list").on("click", ".saved-city", function(){
+    fetchWeatherAPI($(this).text());
+})
+
+displayList();
