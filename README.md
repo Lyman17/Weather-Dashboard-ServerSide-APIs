@@ -1,5 +1,5 @@
 
-# Module6-WeatherDashboard-ServerSide-APIs
+# Module 6 - Weather Dashboard - Server side APIs
 Using the weather API provided, this week's challenge was to build a weather application that allows the user to search for cities, provide the current weather of the city, and give a 5 day forecast. Cities that have already been searched are saved in a list that the user can use to display information on cities they've searched before, utilizing local storage.
 
 ## Deployed Link & Repository
@@ -20,7 +20,7 @@ https://github.com/Lyman17/Weather-Dashboard-ServerSide-APIs
   - for the 5-day forecast, averages were taken based on the 5-day 3-hour response gotten from the OpenWeather API. For example, whichever weather icon appeared the most frequently was the one used, the mean wind speeds and humidity levels per day were calculated, and the high and low temperatures per day are displayed.
 
 ## Installation
-N/A
+No Installtion nor login required
 
 ## Usage
 - Enter in a city name and click "search" to get the current weather and 5 day forecast
@@ -36,6 +36,6 @@ N/A
 - [Open Weather Map](https://openweathermap.org/)
 
 ## Credits
-ChatGPT by OpenAI
-Finalization of code courtesy Hailey Francis - Full Stack Web Developer
+- ChatGPT by OpenAI 
+- Finalization of code courtesy Hailey Francis - Full Stack Web Developer
 
