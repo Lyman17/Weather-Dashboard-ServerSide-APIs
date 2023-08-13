@@ -27,7 +27,7 @@ N/A
 - Once you've entered a valid city name, a button will be created with the name of the button. Clicking on this button pulls up the weather information on that city.
 
 ## Mock-Up
-![Main Page for Weather Dashboard](./assets/screenshots/)
+![Main Page for Weather Dashboard](./assets/screenshots/Screenshot-Weather-Dashboard.png)
 
 
 ## Tools/APIs used
