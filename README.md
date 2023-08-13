@@ -21,6 +21,8 @@ N/A
 ## Usage
 - Enter in a city name and click "search" to get the current weather and 5 day forecast
 - Once you've entered a valid city name, a button will be created with the name of the button. Clicking on this button pulls up the weather information on that city.
+
+## Mock-Up
 ![Main Page for Weather Dashboard](./assets/screenshots/)
 
 
@@ -28,3 +30,8 @@ N/A
 - [jQuery](https://api.jquery.com/)
 - [Bootstrap](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 - [Open Weather Map](https://openweathermap.org/)
+
+## Credits
+ChatGPT by OpenAI
+Finalization of code courtesy Hailey Francis - Full Stack Web Developer
+
